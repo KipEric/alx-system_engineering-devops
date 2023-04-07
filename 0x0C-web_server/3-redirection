@@ -3,16 +3,8 @@
 
 # apt-get update
 # apt-get install -y nginx
-sed -i '2,5s/^/#/' 1-install_nginx_web_server.sh
-
-echo "Hello World!" > /etc/nginx/html/index.html
-echo "server {
-    listen 80;
-    listen [::]:80 default_server;
-    root   /etc/nginx/html;
-    index  index.html;
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
-}" > /etc/nginx/sites-available/default
+sed -i '/^}/i \
+    location /redirect_me {\
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\
+    }' /etc/nginx/sites-available/default
 service nginx restart
