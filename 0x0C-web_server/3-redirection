@@ -1,23 +1,17 @@
 #!/usr/bin/env bash
-# script to install and setup nginx
+
 CONFIG_FILE="/etc/nginx/sites-available/default"
+
 # install nginx
 apt-get -y update
 apt-get -y install nginx
 
 # update index.html file
+sed -i 's/^.*root.*$/\troot \/usr\/share\/nginx\/html;\n\tindex index.html index.htm;/' $CONFIG_FILE
 echo 'Hello World!' > /usr/share/nginx/html/index.html
 
 # update config file to redirect
-printf %s "server {
-    listen 80;
-    listen [::]:80 default_server;
-    root   /usr/share/nginx/html;
-    index  index.html index.htm;
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
-}" > $CONFIG_FILE
+sed -i '/server {/a \\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4/;\n\t}\n' $CONFIG_FILE
 
 # start nginx after reloading config
 service nginx start
