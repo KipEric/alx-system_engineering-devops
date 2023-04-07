@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # Installs nginx web server
 
-apt-get update
-apt-get install -y nginx
+# apt-get update
+# apt-get install -y nginx
+sed -i '2,5s/^/#/' 1-install_nginx_web_server.sh
+
 echo "Hello World!" > /etc/nginx/html/index.html
 echo "server {
     listen 80;
