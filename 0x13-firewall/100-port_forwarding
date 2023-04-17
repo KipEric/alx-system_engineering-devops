@@ -3,8 +3,5 @@
 # update package list
 sudo apt-get update
 
-# allow port 80
-sudo ufw allow 80/tcp
-
 # redirecting port 8080 to port 80
-sudo ufw redirect 8080/tcp to 80/tcp
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 8080 -j REDIRECT --to-port 80
