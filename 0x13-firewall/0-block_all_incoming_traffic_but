@@ -1,0 +1,10 @@
+#!/user/bin/env bash
+
+# allow port 22
+sudo ufw allow ssh
+
+# allow port 443 https ssl
+sudo ufw allow https
+
+# allow port 80 http
+sudo allow http
