@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Bash script of short version on changing user to nginx and listening port to 8080
+
+pkill apache2
+chmod 644 /etc/nginx/nginx.conf
+sed -i 's/user=www,data/user=nginx/' /etc/nginx/nginx.conf
+sed -i 's/listening\*80/listening 8080/' /etc/nginx/sites-available/defaul
+sudo service nginx restert
