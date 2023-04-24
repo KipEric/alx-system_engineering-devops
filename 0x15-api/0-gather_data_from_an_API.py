@@ -5,6 +5,7 @@ import requests
 from sys import argv
 
 if __name__ == "__main__":
+    """Check if argument 2 is present"""
     if len(argv) != 2:
         print(f"Usage: {argv[0]} EMPLOYEE_ID")
         sys.exit(1)
