@@ -5,7 +5,7 @@ active_ips=$(ip -4 addr | grep ' inet ' | awk '{split($2, a, "/"); print a[1]}')
 
 for ip in $active_ips; do
 	echo "Configuring Nginx to listen on $ip:80..."
-	sudo sed -i "s/listen 8080/listen 80/" /etc/nginx/sites-available/default
+	sudo sed -i "s/listen 8080;/listen $ip:80;/" /etc/nginx/sites-available/default
 done
 
 sudo systemctl restart nginx
