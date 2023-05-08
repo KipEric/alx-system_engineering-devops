@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""
-A python script that for a given employee id,
+"""A python script that for a given employee id,
 returns information about his /her TODO list progress
 """
 
