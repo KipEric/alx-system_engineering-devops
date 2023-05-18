@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 #configure nginx to run on port 80
 
-active_ips=$(ip -4 addr | grep ' inet ' | awk '{split($2, a, "/"); print a[1]}')
-
-for ip in $active_ips; do
-	echo "Configuring Nginx to listen on $ip:80..."
-	sudo sed -i "s/listen 8080/listen 80/" /etc/nginx/sites-available/default
-done
-
+sudo sed -i "s/8080 default_server/80 default_server/g" /etc/nginx/sites-enabled/defaul
 sudo systemctl restart nginx
